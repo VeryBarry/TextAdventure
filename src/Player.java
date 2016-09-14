@@ -21,7 +21,9 @@ public class Player {
             System.out.println("That's ok, be a fool.");
         }
         else {
-            throw new Exception("ERRRRR! Choose again.");
+           // throw new Exception("ERRRRR! Choose again.");
+            System.out.println("ERRRRR! Choose again.");
+            chooseWeapon();
         }
     }
     void chooseTransport() throws Exception {
@@ -34,7 +36,9 @@ public class Player {
             System.out.println("OK, but not all good things come the fast way.");
         }
         else {
-            throw new Exception("Why you gotta be a pain?");
+            //throw new Exception("Why you gotta be a pain?");
+            System.out.println("Why you gotta be a pain?");
+            chooseTransport();
         }
     }
 }
