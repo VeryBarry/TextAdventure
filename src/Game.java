@@ -18,6 +18,8 @@ public class Game {
             player.chooseName();
             player.chooseWeapon();
             player.chooseTransport();
+            player.findItem("shield");
+            player.findItem("potion");
 
             System.out.println("You're on your way.");
             System.out.println("Wanna choose again? Yes or No");

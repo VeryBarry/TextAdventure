@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Created by VeryBarry on 9/14/16.
  */
@@ -5,6 +7,7 @@ public class Player {
     String name;
     String weapon;
     String location;
+    ArrayList<String> items = new ArrayList<>();
 
     void chooseName(){
         System.out.println("What's your name?");
@@ -39,6 +42,18 @@ public class Player {
             //throw new Exception("Why you gotta be a pain?");
             System.out.println("Why you gotta be a pain?");
             chooseTransport();
+        }
+    }
+
+    void findItem(String item) {
+        System.out.println("You found a "+ item +"! Press y to pick up.");
+        String answer = Game.scanner.nextLine();
+        if (answer.equalsIgnoreCase("y")){
+            items.add(item);
+            System.out.println("You picked it up!");
+        }
+        else {
+            System.out.println("So wasteful.");
         }
     }
 }
