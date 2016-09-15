@@ -5,25 +5,27 @@ import java.util.Scanner;
  */
 public class Game {
     static Scanner scanner = new Scanner(System.in);
+    static Player player = new Player();
 
     public static void main(String[] args) throws Exception {
         System.out.println("Wattup, yo");
 
         boolean keepRunning = true;
 
+        player.chooseName();
+        player.chooseWeapon();
+        player.chooseTransport();
+
         while (keepRunning) {
 
-            Player player = new Player();
 
-            player.chooseName();
-            player.chooseWeapon();
-            player.chooseTransport();
+
             player.findItem("shield");
             player.findItem("potion");
 
             System.out.println("You're on your way.");
-            System.out.println("Wanna choose again? Yes or No");
-            String answer = scanner.nextLine();
+            System.out.println("Wanna try again? Yes or No");
+            String answer = customLine();
             if (answer.equalsIgnoreCase("No")){
                 keepRunning = false;
             }
@@ -31,4 +33,29 @@ public class Game {
         }
         System.out.println("You died.");
     }
+
+    static String customLine(){
+        String line = scanner.nextLine();
+       // if (line.charAt(0) == '/');
+        if (line.startsWith("/")){
+            switch (line) {
+                case "/exit":
+                    System.exit(0);
+                    break;
+                case "/inv":
+                    for (String item : player.items) {
+                        System.out.println(item);
+                    }
+                    if (player.items.isEmpty()) {
+                        System.out.println("You don't have anything yet.");
+                    }
+                    break;
+                default:
+                    System.out.println("Uh uh uh, that's not the magic word.");
+            }
+            line = scanner.nextLine();
+        }
+        return line;
+    }
+
 }

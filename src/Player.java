@@ -11,12 +11,12 @@ public class Player {
 
     void chooseName(){
         System.out.println("What's your name?");
-        name = Game.scanner.nextLine();
+        name = Game.customLine();
         System.out.println("Welcome, "+ name);
     }
     void chooseWeapon() throws Exception {
         System.out.println("Do you want a lightsaber or a lasergunzz");
-        weapon = Game.scanner.nextLine();
+        weapon = Game.customLine();
         if (weapon.equalsIgnoreCase("lightsaber")){
             System.out.println("Good choice!");
         }
@@ -31,7 +31,7 @@ public class Player {
     }
     void chooseTransport() throws Exception {
         System.out.println("Wanna take the cruiser or a telly?");
-        location = Game.scanner.nextLine();
+        location = Game.customLine();
         if (location.equalsIgnoreCase("cruiser")){
             System.out.println("Fine go the long way.");
         }
@@ -47,7 +47,7 @@ public class Player {
 
     void findItem(String item) {
         System.out.println("You found a "+ item +"! Press y to pick up.");
-        String answer = Game.scanner.nextLine();
+        String answer = Game.customLine();
         if (answer.equalsIgnoreCase("y")){
             items.add(item);
             System.out.println("You picked it up!");
