@@ -16,6 +16,10 @@ public class Game {
         player.chooseWeapon();
         player.chooseTransport();
 
+        Enemy ogre = new Enemy("ogre", 10, 10);
+
+        player.battle(ogre);
+
         while (keepRunning) {
 
 
