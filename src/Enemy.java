@@ -7,4 +7,5 @@ public class Enemy extends Character{
         this.name = name;
         this.damage = damage;
     }
+
 }
