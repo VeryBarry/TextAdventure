@@ -16,7 +16,7 @@ import static com.sun.deploy.util.SessionState.save;
 public class Game {
     static Scanner scanner = new Scanner(System.in);
     static Player player = new Player();
-    static final String FILE_NAME = "SaveGame.json";
+    static final String FILE_NAME = "game.json";
 
     public static void main(String[] args) throws Exception {
         System.out.println("Wattup, yo");
@@ -66,10 +66,13 @@ public class Game {
                     }
                     break;
                 case "/save":
-                    saveGame();
+                    saveGame(player, FILE_NAME);
                     break;
                 case "/load":
-                    loadGame();
+                    Player p = loadGame(FILE_NAME);
+                    if (p != null){
+                        player = p;
+                    }
                     break;
                 default:
                     System.out.println("Uh uh uh, that's not the magic word.");
@@ -79,10 +82,10 @@ public class Game {
         return line;
     }
 
-    static void saveGame()  {
+    static void saveGame(Player player, String fileName)  {
         JsonSerializer serializer = new JsonSerializer();
         String json = serializer.deep(true).serialize(player);
-        File f = new File("SaveGame.json");
+        File f = new File(fileName);
         try {
             FileWriter fw = new FileWriter(f);
             fw.write(json);
@@ -92,17 +95,18 @@ public class Game {
         }
     }
 
-    static void loadGame() {
-        File f = new File(FILE_NAME);
+    static Player loadGame(String fileName) {
+        File f = new File(fileName);
         try{
             FileReader fr = new FileReader(f);
             int fileSize = (int) f.length();
             char[] contents = new char[fileSize];
             fr.read(contents, 0, fileSize);
             JsonParser parser = new JsonParser();
-            player = parser.parse(contents, Player.class);
+            return parser.parse(contents, Player.class);
         } catch (Exception e) {
             System.out.println("Couldn't load file!");
+            return null;
         }
     }
 }
